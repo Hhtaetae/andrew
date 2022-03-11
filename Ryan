@@ -1,0 +1,330 @@
+print("HI Emervin")
+
+local BankIds = {
+
+--- "dbdba7cf-eb8-4904-a358-3ef582ae35a",
+
+--- "a2066aaf-6baa-449f-8313-06a0611ce7ed",
+
+--- "a2066aaf-6baa-449f-8313-06a0611ce7ed",
+
+ "a2066aaf-6baa-449f-8313-06a0611ce7ed",
+
+ "a2066aaf-6baa-449f-8313-06a0611ce7ed",
+
+ "a2066aaf-6baa-449f-8313-06a0611ce7ed",
+
+}
+
+local ScreenGui = Instance.new("ScreenGui")
+
+local Frame = Instance.new("Frame")
+
+local DragFrame = Instance.new("Frame")
+
+local MainFrame = Instance.new("Frame")
+
+local ResetButton = Instance.new("TextButton")
+
+local UIGridLayout = Instance.new("UIGridLayout")
+
+local FiveMinutes = Instance.new("TextButton")
+
+local TenMinutes = Instance.new("TextButton")
+
+local FifteenMinutes = Instance.new("TextButton")
+
+local UIListLayout = Instance.new("UIListLayout")
+
+function StylizeGuiProperties ()
+
+ ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+ ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ Frame.Parent = ScreenGui
+
+ Frame.BackgroundColor3 = Color3.fromRGB(26, 26, 28)
+
+ Frame.BorderSizePixel = 0
+
+ Frame.Position = UDim2.new(0.25, 0, 0.25, 0)
+
+ Frame.Size = UDim2.new(0.25, 0, 0, 250)
+
+ DragFrame.Name = "DragFrame"
+
+ DragFrame.Parent = Frame
+
+ DragFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 28)
+
+ DragFrame.BackgroundTransparency = 1.000
+
+ DragFrame.BorderSizePixel = 0
+
+ DragFrame.Size = UDim2.new(1, 0, 0.150000006, 0)
+
+ DragFrame.Draggable = true
+
+ DragFrame.Active = true
+
+ DragFrame.Selectable = true
+
+ MainFrame.Name = "MainFrame"
+
+ MainFrame.Parent = Frame
+
+ MainFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 28)
+
+ MainFrame.BackgroundTransparency = 1.000
+
+ MainFrame.BorderSizePixel = 0
+
+ MainFrame.Size = UDim2.new(1, 0, 0.850000024, 0)
+
+ ResetButton.Name = "ResetButton"
+
+ ResetButton.Parent = MainFrame
+
+ ResetButton.BackgroundColor3 = Color3.fromRGB(255, 47, 47)
+
+ ResetButton.BorderSizePixel = 0
+
+ ResetButton.Size = UDim2.new(1, 0, 0, 50)
+
+ ResetButton.Font = Enum.Font.SourceSans
+
+ ResetButton.Text = "Reset"
+
+ ResetButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+ ResetButton.TextSize = 35.000
+
+ ResetButton.TextWrapped = true
+
+ UIGridLayout.Parent = MainFrame
+
+ UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+ UIGridLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+
+ UIGridLayout.CellPadding = UDim2.new(0, 0, 0, 0)
+
+ UIGridLayout.CellSize = UDim2.new(1, 0, 0, 50)
+
+ FiveMinutes.Name = "FiveMinutes"
+
+ FiveMinutes.Parent = MainFrame
+
+ FiveMinutes.BackgroundColor3 = Color3.fromRGB(3, 202, 0)
+
+ FiveMinutes.BorderSizePixel = 0
+
+ FiveMinutes.Size = UDim2.new(1, 0, 0, 50)
+
+ FiveMinutes.Font = Enum.Font.SourceSans
+
+ FiveMinutes.Text = "5 Minutes"
+
+ FiveMinutes.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+ FiveMinutes.TextSize = 35.000
+
+ FiveMinutes.TextWrapped = true
+
+ TenMinutes.Name = "TenMinutes"
+
+ TenMinutes.Parent = MainFrame
+
+ TenMinutes.BackgroundColor3 = Color3.fromRGB(1, 109, 0)
+
+ TenMinutes.BorderSizePixel = 0
+
+ TenMinutes.Size = UDim2.new(1, 0, 0, 50)
+
+ TenMinutes.Font = Enum.Font.SourceSans
+
+ TenMinutes.Text = "10 Minutes"
+
+ TenMinutes.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+ TenMinutes.TextSize = 35.000
+
+ TenMinutes.TextWrapped = true
+
+ FifteenMinutes.Name = "FifteenMinutes"
+
+ FifteenMinutes.Parent = MainFrame
+
+ FifteenMinutes.BackgroundColor3 = Color3.fromRGB(0, 42, 0)
+
+ FifteenMinutes.BorderSizePixel = 0
+
+ FifteenMinutes.Size = UDim2.new(1, 0, 0, 50)
+
+ FifteenMinutes.Font = Enum.Font.SourceSans
+
+ FifteenMinutes.Text = "15 Minutes"
+
+ FifteenMinutes.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+ FifteenMinutes.TextSize = 35.000
+
+ FifteenMinutes.TextWrapped = true
+
+ UIListLayout.Parent = Frame
+
+ UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+ ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+end
+
+StylizeGuiProperties()
+
+function ExecuteRemote(Remote, Man)
+
+ Remote:FireServer(Man[1], Man[2])
+
+end
+
+function MinutesToSecond(Minutes)
+
+ return math.floor((Minutes * 60))
+
+end
+
+local CurrentTimestamp, Final, Finished = 0, 0, false
+
+local LoopResting = false
+
+task.spawn(function()
+
+ while task.wait(0.1) do
+
+  print('Looping by Emervin')
+
+  if Finished then
+
+   print('Finsihed by Emervin')
+
+   LoopResting = true
+
+   wait(1)
+
+   CurrentTimestamp = 0
+
+   Final = Final
+
+   Finished = false
+
+   LoopResting = false
+
+  end
+
+  if Final > 0 and Finished == false and LoopResting ~= true then
+
+   print('Requesting RepeatInstance by Emervin ')
+
+   print(CurrentTimestamp, Final, Finished)
+
+   if CurrentTimestamp == Final then
+
+    print('Final Reached by Emervin')
+
+    Finished = true
+
+   else
+
+    CurrentTimestamp = CurrentTimestamp + 1
+
+    ExecuteRemote(workspace["__THINGS"]["__REMOTES"].MAIN, {"b", "bank withdraw"});
+
+    --//
+
+    for i,v in pairs(BankIds) do
+
+     local A_1 = 
+
+      {
+
+       [1] = v, 
+
+       [2] = 
+
+       {
+
+       }, 
+
+       [3] = i
+
+      }
+
+     game.Workspace["__THINGS"]["__REMOTES"]["bank withdraw"]:InvokeServer(A_1)
+
+    end
+
+   end
+
+  end
+
+ end
+
+end)
+
+ResetButton.MouseButton1Click:Connect(function()
+
+ print("Resetting by Emervin")
+
+ -- if LoopBroken == true then SpawnLoop() LoopBroken = false end
+
+ Finished = true
+
+ CurrentTimestamp = 0
+
+ Final = 0
+
+end)
+
+FiveMinutes.MouseButton1Click:Connect(function()
+
+ print("Converting to Five Minutes.by Emervin ", CurrentTimestamp, Finished, Final)
+
+ Finished = false
+
+ CurrentTimestamp = 0
+
+ Final = MinutesToSecond(5)
+
+ print("Converted to Five Minutes.by Emervin", CurrentTimestamp, Finished, Final)
+
+end)
+
+TenMinutes.MouseButton1Click:Connect(function()
+
+ print("Converting to Ten Minutes.by Emervin", CurrentTimestamp, Finished, Final)
+
+ Finished = false
+
+ CurrentTimestamp = 0
+
+ Final = MinutesToSecond(10)
+
+ print("Converted to Ten Minutes.by Emervin", CurrentTimestamp, Finished, Final)
+
+end)
+
+FifteenMinutes.MouseButton1Click:Connect(function()
+
+ print("Converting to Fifteen Minutes.by Emervin", CurrentTimestamp, Finished, Final)
+
+ Finished = false
+
+ CurrentTimestamp = 0
+
+ Final = MinutesToSecond(15)
+
+ print("Converted to Fifteen Minutes.by Emervin", CurrentTimestamp, Finished, Final)
+
+end)
+
